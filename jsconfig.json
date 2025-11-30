@@ -1,0 +1,9 @@
+{
+  "buildOptions": {
+    "baseUrl": ".",
+    "path": {
+      "#*": ["src/*"]
+    }
+  },
+  "include": ["src"]
+}
