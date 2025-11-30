@@ -24,14 +24,14 @@ const rendereText = (text, className, baseWeight = 400) => {
 }
 
 const setupTextHover = (container, type) => {
-  if (!container) return;
+  if (!container) return () => {};
   const letters = container.querySelectorAll('span');
   const { min, max, default: base } = FONT_WEIGHTS[type];
 
   const animateLetter = (letter, weight, duration = 0.25) => {
     return gsap.to(letter, {
       duration,
-      ease: 'power3.out',
+      ease: 'power2.out',
       fontVariationSettings: `"wght" ${weight}`,
     });
   }
@@ -42,7 +42,7 @@ const setupTextHover = (container, type) => {
 
     letters.forEach((letter) => {
       const { left: l, width: w } = letter.getBoundingClientRect();
-      const distacne = Math.abs(mouseX - (l + w / 2));
+      const distacne = Math.abs(mouseX - (l - left + w / 2));
       const intensityy = Math.exp(-(distacne ** 2) / 5000);
       
       animateLetter(letter, min + (max - min) * intensityy);
